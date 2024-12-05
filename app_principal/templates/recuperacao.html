@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação - Alunos Reprovados</title>
+
+        <!-- CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        td b {
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .status-reprovado {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Estilo do botão de Voltar */
+        .voltar-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .voltar-home:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Botão Voltar  -->
+<a href="/home/" class="voltar-home">Pagina Principal</a>
+
+<h1>Alunos Reprovados</h1>
+
+<h2>Recuperação</h2>
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>RA</th>
+        <th>Nota 1</th>
+        <th>Nota 2</th>
+        <th>Nota 3</th>
+        <th>Nota 4</th>
+        <th>Média</th>
+        <th>Status</th>
+    </tr>
+    {% for aluno in alunos_reprovados %}
+    <tr>
+        <td>{{ aluno.nome }}</td>
+        <td>{{ aluno.ra }}</td>
+        <td>{{ aluno.nota1 }}</td>
+        <td>{{ aluno.nota2 }}</td>
+        <td>{{ aluno.nota3 }}</td>
+        <td>{{ aluno.nota4 }}</td>
+        <td>{{ aluno.media|floatformat:2 }}</td>
+        <td class="status-reprovado">Reprovado</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="8">Não há alunos reprovados no momento.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
